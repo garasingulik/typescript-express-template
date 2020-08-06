@@ -26,3 +26,11 @@ export const asyncForEach = async <T> (array: T[], callback: (el: T, i: number, 
 export const echo = () => {
   return 'OK'
 }
+
+/* Register Types Here */
+
+export const HelloRequest = iots.interface({
+  name!: iots.string
+})
+
+export type HelloRequestType = iots.TypeOf<typeof HelloRequest>
