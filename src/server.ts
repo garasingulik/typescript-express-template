@@ -2,17 +2,16 @@ import * as bodyParser from 'body-parser'
 import * as express from 'express'
 
 import config from './config'
-
-import { DefaultRoutes } from './routes/default'
+import * as Routes from './routes'
 
 const app = express()
 
 // tslint:disable-next-line: deprecation
 app.use(bodyParser.json())
 
-async function start () {
+const start = async () => {
   // Register all the routes here
-  DefaultRoutes.register(app)
+  Routes.DefaultRoutes.register(app)
 
   app.listen(config.port, (err: Error) => {
     if (err) {

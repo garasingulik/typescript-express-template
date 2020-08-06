@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "ava --timeout=30s --verbose",
-    "pretest": "tslint -p .",
+    "pretest": "eslint **/*.ts --fix",
     "build": "tsc -p .",
     "prepare": "npm run build",
     "watch": "tsc --watch",
