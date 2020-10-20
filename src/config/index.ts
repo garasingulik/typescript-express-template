@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import development from './development'
 import production from './production'
 import staging from './staging'
