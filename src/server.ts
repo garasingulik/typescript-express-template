@@ -13,11 +13,8 @@ const start = async () => {
   // Register all the routes here
   Routes.DefaultRoutes.register(app)
 
-  app.listen(config.port, (err: Error) => {
-    if (err) {
-      throw err
-    }
-    console.debug(`Listening on port: ${config.port}`)
+  app.listen(config.port, () => {
+    console.debug(`Listening on port: http://localhost:${config.port}`)
   })
 }
 
