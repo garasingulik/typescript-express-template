@@ -1,9 +1,12 @@
+import { Either } from 'fp-ts/lib/Either'
+import * as t from 'io-ts'
+
 export * from 'tswrap'
 
-import { Either } from 'fp-ts/lib/Either'
-import * as iots from 'io-ts'
-
-export const parseData = <T>(data: any, structure: iots.TypeC<any> | iots.IntersectionC<any>): Either<iots.Errors, any> | T => {
+export const parseData = <T>(
+  data: any,
+  structure: t.TypeC<any> | t.IntersectionC<any>
+): Either<t.Errors, any> | T => {
   const decoded = structure.decode(data)
 
   if (decoded._tag === 'Left') {
@@ -13,11 +16,14 @@ export const parseData = <T>(data: any, structure: iots.TypeC<any> | iots.Inters
   return decoded.right as T
 }
 
-export const isParseError = (arg: any): arg is Either<iots.Errors, any> => {
+export const isParseError = (arg: any): arg is Either<t.Errors, any> => {
   return arg && arg._tag === 'Left'
 }
 
-export const asyncForEach = async <T> (array: T[], callback: (el: T, i: number, a: T[]) => void) => {
+export const asyncForEach = async <T>(
+  array: T[],
+  callback: (el: T, i: number, a: T[]) => void
+) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array)
   }
@@ -28,9 +34,8 @@ export const echo = () => {
 }
 
 /* Register Types Here */
-
-export const HelloRequest = iots.interface({
-  name!: iots.string
+export const IHelloRequest = t.interface({
+  name: t.string
 })
 
-export type HelloRequestType = iots.TypeOf<typeof HelloRequest>
+export type HelloRequest = t.TypeOf<typeof IHelloRequest>

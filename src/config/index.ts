@@ -5,13 +5,13 @@ import production from './production'
 import staging from './staging'
 
 export interface Config {
-  port: number,
+  port: number
   secret: string
 }
 
 export const NODE_ENV = process.env.NODE_ENV || 'development'
 
-function getConfig (): Config {
+const getConfig = (): Config => {
   switch (NODE_ENV) {
     case 'production': {
       return production

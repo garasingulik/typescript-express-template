@@ -1,20 +1,25 @@
 import * as express from 'express'
 import * as iotsReporters from 'io-ts-reporters'
 
-import * as T from '../lib/types'
+import {
+  IHelloRequest,
+  HelloRequest,
+  parseData,
+  isParseError
+} from '../lib/types'
+
 import { authenticationMiddleware } from './authorization'
 
 export const DefaultRoutes = {
   register: (app: express.Application) => {
-
     app.get('/ping', (req, res) => {
       res.sendStatus(200)
     })
 
     app.post('/hello', authenticationMiddleware, (req, res) => {
-      const data = T.parseData<T.HelloRequestType>(req.body, T.HelloRequest)
+      const data = parseData<HelloRequest>(req.body, IHelloRequest)
 
-      if (T.isParseError(data)) {
+      if (isParseError(data)) {
         return res.status(400).json({
           errors: iotsReporters.default.report(data)
         })

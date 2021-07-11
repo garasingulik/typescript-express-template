@@ -3,7 +3,11 @@ import * as express from 'express'
 import config from '../config'
 
 // Simple authentication middleware for express
-export function authenticationMiddleware (req: express.Request, res: express.Response, next: express.NextFunction) {
+export const authenticationMiddleware = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
   // No authorization on development
   if (!config.secret) {
     return next()
