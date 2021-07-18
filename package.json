@@ -40,7 +40,7 @@
     "express": "^4.17.1",
     "fp-ts": "^2.10.5",
     "io-ts": "^2.2.16",
-    "io-ts-reporters": "^1.2.2",
+    "io-ts-reporters": "^2.0.0",
     "tswrap": "^1.0.4"
   },
   "devDependencies": {
