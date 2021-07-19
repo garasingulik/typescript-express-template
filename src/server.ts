@@ -4,9 +4,7 @@ import config from './config'
 import * as Routes from './routes'
 
 const app = express()
-
-// tslint:disable-next-line: deprecation
-app.use(express.json)
+app.use(express.json())
 
 const start = async () => {
   // Register all the routes here
@@ -17,5 +15,4 @@ const start = async () => {
   })
 }
 
-// tslint:disable-next-line
 start()

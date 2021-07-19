@@ -12,9 +12,12 @@ import { authenticationMiddleware } from './authorization'
 
 export const DefaultRoutes = {
   register: (app: express.Application) => {
-    app.get('/ping', (req, res) => {
-      res.sendStatus(200)
-    })
+    const healthCheck = (req: express.Request, res: express.Response) => {
+      res.json({ message: 'OK' })
+    }
+
+    app.get('/', healthCheck)
+    app.get('/ping', healthCheck)
 
     app.post('/hello', authenticationMiddleware, (req, res) => {
       const data = parseData<HelloRequest>(req.body, IHelloRequest)
